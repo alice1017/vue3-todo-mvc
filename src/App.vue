@@ -28,7 +28,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { LocalStorageManager } from "./modules/storage";
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
 import TodoFilters from "./components/TodoFilters.vue";
@@ -43,6 +44,8 @@ export default {
 }
 
 
+
+const storageManager = new LocalStorageManager("todos-vue3");
 
 //export const todos = ref([
 //  { title: "todo 1", completed: false, editing: false, index: 0 },
@@ -71,6 +74,15 @@ export const hasCompletedTodo = computed(() => {
 
 
 
+onMounted(() => {
+  const hasValue = storageManager.hasValue();
+  if (hasValue) {
+    todos.value = storageManager.get();
+  }
+});
+
+
+
 export function addTodo(newone) {
   todos.value.push(
     {
@@ -80,6 +92,7 @@ export function addTodo(newone) {
       index: todoCount.value
     }
   );
+  storageManager.set(todos.value);
   todoCount.value ++;
 }
 
