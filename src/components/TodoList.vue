@@ -18,9 +18,9 @@
           class="edit"
           v-model="todo.title"
           v-todo-focus="todo.editing"
-          @bluer="doneEditing(todo)"
-          @keydown.enter="doneEditing(todo)"
-          @keydown.esc="cancelEditing(todo)"
+          @blur="doneEditing(todo)"
+          @keyup.enter="doneEditing(todo)"
+          @keyup.esc="cancelEditing(todo)"
         >
       </li>
     </template>
@@ -75,7 +75,7 @@ export function edit(todo) {
 }
 
 export function doneEditing(todo) {
-  if (isNotEmpty(todo)) {
+  if (isNotEmpty(todo.title)) {
     todo.editing = false;
   }
 }
