@@ -20,7 +20,9 @@ export default {
 
 export const todo = ref("");
 export const emitEvent = (newone) => {
-  emit("add", newone);
-  todo.value = "";
+  if (newone.length > 0) {
+    emit("add", newone);
+    todo.value = "";
+  }
 };
 </script>
