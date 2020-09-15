@@ -14,7 +14,7 @@
     <footer class="footer" v-show="todos.length" v-cloak>
       <span class="todo-count">{{ remaining }}</span>
       <todo-filters :selected="filter" @change="changeFilter" />
-      <button class="clear-completed" @click="clearCompleted">Clear Completed</button>
+      <button class="clear-completed" @click="clearCompleted" v-show="hasCompletedTodo">Clear Completed</button>
     </footer>
 
   </section>
@@ -49,8 +49,10 @@ export default {
 //  { title: "todo 2", completed: false, editing: false, index: 1 },
 //  { title: "todo 3", completed: false, editing: false, index: 2 }
 //]);
+//export const todoCount = ref(3);
+
 export const todos = ref([]);
-export const todoCount = ref(3);
+export const todoCount = ref(0);
 export const filter = ref("All");
 
 
@@ -59,6 +61,12 @@ export const remaining = computed(() => {
   const items = todos.value.length;
   const info = items > 1 ? "items" : "item";
   return `${items} ${info} left`;
+});
+
+export const hasCompletedTodo = computed(() => {
+  const completed = todos.value.filter(todo => todo.completed === true);
+  console.log(completed);
+  return completed.length > 0;
 });
 
 
@@ -76,6 +84,7 @@ export function addTodo(newone) {
 }
 
 export function destroyTodo(todoIndex) {
+  console.log(todoIndex);
   todos.value.splice(todoIndex, 1);
 }
 
