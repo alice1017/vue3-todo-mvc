@@ -1,0 +1,17 @@
+{
+  "name": "vue3-todo-mvc",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "todomvc-app-css": "2.2.0",
+    "vue": "^3.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "3.0.0-rc.10",
+    "vite": "1.0.0-rc.4"
+  }
+}
