@@ -29,6 +29,7 @@
 
 <script setup="props, { emit }">
 import { ref, computed } from "vue";
+import { isNotEmpty } from "../modules/helpers";
 
 export default {
   name: "TodoList",
@@ -66,7 +67,9 @@ export function edit(todo) {
 }
 
 export function doneEditing(todo) {
-  todo.editing = false;
+  if (isNotEmpty(todo)) {
+    todo.editing = false;
+  }
 }
 
 export function cancelEditing(todo) {

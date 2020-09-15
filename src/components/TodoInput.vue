@@ -11,6 +11,7 @@
 
 <script setup="props, { emit }">
 import { ref } from "vue";
+import { isNotEmpty } from "../modules/helpers";
 
 export default {
   name: "TodoInput",
@@ -20,7 +21,7 @@ export default {
 
 export const todo = ref("");
 export const emitEvent = (newone) => {
-  if (newone.length > 0) {
+  if (isNotEmpty(newone)) {
     emit("add", newone);
     todo.value = "";
   }
