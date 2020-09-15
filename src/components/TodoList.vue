@@ -8,7 +8,7 @@
       }">
 
         <div class="view">
-          <input type="checkbox" class="toggle" v-model="todo.completed" />
+          <input type="checkbox" class="toggle" v-model="todo.completed" @change="updateStorage"/>
           <label @dblclick="edit(todo)">{{ todo.title }}</label>
           <button class="destroy" @click="emitDestroyEvent(todo.index)"></button>
         </div>
@@ -30,6 +30,7 @@
 <script setup="props, { emit }">
 import { ref, computed } from "vue";
 import { isNotEmpty } from "../modules/helpers";
+import { LocalStorageManager } from "../modules/storage";
 
 export default {
   name: "TodoList",
@@ -45,6 +46,9 @@ export default {
 }
 
 
+
+const storageManager = new LocalStorageManager("todos-vue3");
+
 export const filteredTodos = computed(() => {
   const filterStore = {
     All:       () => props.todos,
@@ -59,6 +63,10 @@ const todoCache = ref("");
 
 export function saveTodoCache(todo) {
   todoCache.value = todo.title;
+}
+
+export function updateStorage() {
+  storageManager.set(props.todos);
 }
 
 export function edit(todo) {

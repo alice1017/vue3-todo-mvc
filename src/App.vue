@@ -110,5 +110,6 @@ export function clearCompleted() {
   for(const todo of completedTodos) {
     todos.value.splice(todo.index, 1);
   }
+  storageManager.set(todos.value);
 }
 </script>
