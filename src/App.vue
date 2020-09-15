@@ -7,11 +7,11 @@
       <todo-input @add="addTodo"/>
     </header>
 
-    <section class="main">
+    <section class="main" v-cloak>
       <todo-list :todos="todos" :filter="filter" @destroy="destroyTodo"/>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" v-cloak>
       <span class="todo-count">{{ remaining }}</span>
       <todo-filters :selected="filter" @change="changeFilter" />
       <button class="clear-completed" @click="clearCompleted">Clear Completed</button>
