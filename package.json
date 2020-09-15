@@ -1,5 +1,6 @@
 {
   "name": "vue3-todo-mvc",
+  "description": "A todo application written in vue3 and powered by TodoMVC.",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
