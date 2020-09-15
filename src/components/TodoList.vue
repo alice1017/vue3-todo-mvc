@@ -10,7 +10,7 @@
         <div class="view">
           <input type="checkbox" class="toggle" v-model="todo.completed" @change="updateStorage"/>
           <label @dblclick="edit(todo)">{{ todo.title }}</label>
-          <button class="destroy" @click="emitDestroyEvent(todo.index)"></button>
+          <button class="destroy" @click="emitDestroyEvent(todo)"></button>
         </div>
 
         <input
@@ -85,7 +85,7 @@ export function cancelEditing(todo) {
   todo.title = todoCache.value;
 }
 
-export function emitDestroyEvent(todoIndex) {
-  emit("destroy", todoIndex);
+export function emitDestroyEvent(todo) {
+  emit("destroy", todo);
 }
 </script>

@@ -96,9 +96,16 @@ export function addTodo(newone) {
   todoCount.value ++;
 }
 
-export function destroyTodo(todoIndex) {
-  console.log(todoIndex);
-  todos.value.splice(todoIndex, 1);
+export function destroyTodo(todo) {
+  const index = todos.value.indexOf(todo);
+  todos.value.splice(index, 1);
+
+  if (todos.length === 0) {
+    todoCount.value = 0;
+  }
+  else {
+    storageManager.set(todos.value);
+  }
 }
 
 export function changeFilter(newone) {
