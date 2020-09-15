@@ -1,17 +1,17 @@
 <template>
 
-  <section class="todoapp">
+  <section class="todoapp" v-cloak>
 
     <header class="header">
       <h1>Todos</h1>
       <todo-input @add="addTodo"/>
     </header>
 
-    <section class="main" v-cloak>
+    <section class="main" v-show="todos.length" v-cloak>
       <todo-list :todos="todos" :filter="filter" @destroy="destroyTodo"/>
     </section>
 
-    <footer class="footer" v-cloak>
+    <footer class="footer" v-show="todos.length" v-cloak>
       <span class="todo-count">{{ remaining }}</span>
       <todo-filters :selected="filter" @change="changeFilter" />
       <button class="clear-completed" @click="clearCompleted">Clear Completed</button>
@@ -19,7 +19,11 @@
 
   </section>
 
-  <footer class="info"></footer>
+  <footer class="info">
+    <p>Double-click to edit a todo</p>
+    <p>Written by <a href="http://evanyou.me">Evan You</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  </footer>
 
 </template>
 
@@ -40,11 +44,12 @@ export default {
 
 
 
-export const todos = ref([
-  { title: "todo 1", completed: false, editing: false, index: 0 },
-  { title: "todo 2", completed: false, editing: false, index: 1 },
-  { title: "todo 3", completed: false, editing: false, index: 2 }
-]);
+//export const todos = ref([
+//  { title: "todo 1", completed: false, editing: false, index: 0 },
+//  { title: "todo 2", completed: false, editing: false, index: 1 },
+//  { title: "todo 3", completed: false, editing: false, index: 2 }
+//]);
+export const todos = ref([]);
 export const todoCount = ref(3);
 export const filter = ref("All");
 
