@@ -77,6 +77,7 @@ export function edit(todo) {
 export function doneEditing(todo) {
   if (isNotEmpty(todo.title)) {
     todo.editing = false;
+    updateStorage();
   }
 }
 
